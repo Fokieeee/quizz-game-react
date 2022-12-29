@@ -1,0 +1,30 @@
+.container{ 
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	gap: 30px;
+}
+
+.btn {
+	width: 104px;
+	height: 30px;
+	background: #4D5B9E;
+	border-radius: 10px;
+	border: none;
+	color: #F5F7FB;
+	cursor: pointer;
+	font-weight: 600;
+	font-size: 12.24px;
+	line-height: 12px;
+	text-align: center;
+}
+
+.result {
+	width: 262px;
+	height: 15px;
+	font-weight: 700;
+	font-size: 15.8px;
+	line-height: 15px;
+	text-align: center;
+	color: #293264;
+}
