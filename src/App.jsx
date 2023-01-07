@@ -1,12 +1,14 @@
 import { useState, useEffect } from "react";
-import "./App.css";
 import { BackgroundImages } from "./Components/BackgroundImages/BackgroundImages";
 import { CheckButton } from "./Components/CheckButton/CheckButton";
 import { Start } from "./Components/Start/Start";
 import { Test } from "./Components/Test/Test";
+import { Result } from "./Components/Result/Result";
+
 import { nanoid } from "nanoid";
 import produce from "immer";
-import { Result } from "./Components/Result/Result";
+
+import "./App.css";
 
 function App() {
   const [tests, setTests] = useState([]);
@@ -16,9 +18,11 @@ function App() {
 
   useEffect(() => {
     async function getTests() {
+
       const res = await fetch(
         "https://opentdb.com/api.php?amount=20&difficulty=easy&type=multiple&encode=base64"
       );
+			
       const data = await res.json();
       const decoded = data.results.map((test) => {
         return {
@@ -117,17 +121,15 @@ function App() {
     );
   });
 
-  const restartGame = () => {
-    window.location.reload();
-  };
+  const restartGame = () => window.location.reload();
 
   return (
     <div className="App">
       <BackgroundImages />
-      {gameStart === false && mappingTests}
+      {!gameStart && mappingTests}
       {gameStart && <Start setGameStart={setGameStart} />}
       {gameEnd && <Result restartGame={restartGame} result={result} />}
-      {gameEnd === false && gameStart === false && (
+      {!gameEnd && !gameStart && (
         <CheckButton checkResult={checkResult} />
       )}
     </div>
