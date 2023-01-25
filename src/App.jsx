@@ -18,11 +18,10 @@ function App() {
 
   useEffect(() => {
     async function getTests() {
-
       const res = await fetch(
         "https://opentdb.com/api.php?amount=20&difficulty=easy&type=multiple&encode=base64"
       );
-			
+
       const data = await res.json();
       const decoded = data.results.map((test) => {
         return {
@@ -129,9 +128,7 @@ function App() {
       {!gameStart && mappingTests}
       {gameStart && <Start setGameStart={setGameStart} />}
       {gameEnd && <Result restartGame={restartGame} result={result} />}
-      {!gameEnd && !gameStart && (
-        <CheckButton checkResult={checkResult} />
-      )}
+      {!gameEnd && !gameStart && <CheckButton checkResult={checkResult} />}
     </div>
   );
 }
